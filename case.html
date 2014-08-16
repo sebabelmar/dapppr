@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Title</title>
+    <title>IPhone Case</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -12,11 +12,12 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/fabric.js"></script>
+
 	<script type="text/javascript" src="js/caseEditor.js"></script>
 	<script type="text/javascript" src="js/jquery.miniColors.min.js"></script>
-	
+
     <!-- Le styles -->
     <link type="text/css" rel="stylesheet" href="css/jquery.miniColors.css" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +30,7 @@
 			margin-top: 70px;
 			border-top: 1px solid #E5E5E5;
 			background-color: whiteSmoke;
-			}			
+			}
 	      body {
 	        padding-top: 60px;
 /*	        background-color: #000000;	        */
@@ -45,13 +46,13 @@
 	      	width: 20px;
 	      	height: 20px;
 	      }
-	      .rotate {  
+	      .rotate {
 		    -webkit-transform:rotate(90deg);
 		    -moz-transform:rotate(90deg);
 		    -o-transform:rotate(90deg);
 		    /* filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1.5); */
-		    -ms-transform:rotate(90deg);		   
-		}		
+		    -ms-transform:rotate(90deg);
+		}
 		.Arial{font-family:"Arial";}
 		.Helvetica{font-family:"Helvetica";}
 		.MyriadPro{font-family:"Myriad Pro";}
@@ -97,27 +98,27 @@
 		  <div class="page-header">
 		    <h1>iPhone Case</h1>
 		  </div>
-		
+
 		  <!-- Headings & Paragraph Copy -->
-		  <div class="row">			
+		  <div class="row">
 		    <div class="span3">
-		    	
+
 		    	<div class="tabbable"> <!-- Only required for left/right tabs -->
 				  <ul class="nav nav-tabs">
-				  	<li class="active"><a href="#tab1" data-toggle="tab">Case Options</a></li>				    
+				  	<li class="active"><a href="#tab1_case" data-toggle="tab">Case Options</a></li>
 				    <li><a href="#tab2" data-toggle="tab">Design and Text</a></li>
 				  </ul>
 				  <div class="tab-content">
-				     <div class="tab-pane active" id="tab1">
+				     <div class="tab-pane active" id="tab1_case">
 				     	<div class="well">
 <!--					      	<h3>Tee Styles</h3>-->
 <!--						      <p>-->
-						      	<select id="phoneTypes">                        
+						      	<select id="phoneTypes">
 				                    <option value="1" selected="selected">iPhone 5</option>
-				                    <option value="2">iPhone 4</option>				                                     
+				                    <option value="2">iPhone 4</option>
 				                    <option value="3">Samsumg III</option>
-								</select>				
-<!--						      </p>-->								
+								</select>
+<!--						      </p>-->
 					      </div>
 					      <div class="well">
 							<ul class="nav">
@@ -140,18 +141,16 @@
 								<li class="color-preview" title="Heather Sapphire" style="background-color:#15aeda;"></li>
 								<li class="color-preview" title="Sky" style="background-color:#a5def8;"></li>
 								<li class="color-preview" title="Antique Sapphire" style="background-color:#0f77c0;"></li>
-								<li class="color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>							
+								<li class="color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>
 								<li class="color-preview" title="Cherry Red" style="background-color:#c50404;"></li>
 							</ul>
-						</div>			      
-				     </div>				   
+						</div>
+				     </div>
 				    <div class="tab-pane" id="tab2">
 				    	<div class="well" style="height:400px;">
 				    		<div class="input-append">
 							  <input class="span2" id="text-string" type="text" placeholder="add text here..."><button id="add-text" class="btn" title="Add text"><i class="icon-share-alt"></i></button>
-							  <hr>
-							  <button class="btn btn-primary">Upload</button>
-							  <hr>
+
 							</div>
 				    		<img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/1.jpg">
 				    		<img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/7.jpg">
@@ -160,17 +159,17 @@
 			                <img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/3.jpg">
 			                <img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/4.jpg">
 			                <img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/5.jpg">
-			                <img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/6.jpg">			                
-				    	</div>				      
+			                <img style="cursor:pointer;width:90px;height:120px;" class="img-polaroid" src="img/phones/designs/6.jpg">
+				    	</div>
 				    </div>
 				  </div>
-				</div>				
-		    </div>		
-		    <div class="span6">		    
+				</div>
+		    </div>
+		    <div class="span6">
 		    		<div align="center" style="min-height: 32px;">
 		    			<div class="clearfix">
-							<div class="btn-group inline pull-left" id="texteditor" style="display:none;">							  
-								<button id="font-family" class="btn dropdown-toggle" data-toggle="dropdown" title="Font Style"><i class="icon-font" style="width:19px;height:19px;"></i></button>		                      
+							<div class="btn-group inline pull-left" id="texteditor" style="display:none;">
+								<button id="font-family" class="btn dropdown-toggle" data-toggle="dropdown" title="Font Style"><i class="icon-font" style="width:19px;height:19px;"></i></button>
 							    <ul class="dropdown-menu" role="menu" aria-labelledby="font-family-X">
 								    <li><a tabindex="-1" href="#" onclick="setFont('Arial');" class="Arial">Arial</a></li>
 								    <li><a tabindex="-1" href="#" onclick="setFont('Helvetica');" class="Helvetica">Helvetica</a></li>
@@ -194,28 +193,28 @@
 							 	<a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Color"><input type="hidden" id="text-fontcolor" class="color-picker" size="7" value="#000000"></a>
 						 		<a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Border Color"><input type="hidden" id="text-strokecolor" class="color-picker" size="7" value="#000000"></a>
 								  <!--- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> --->
-							</div>							  
-							<div class="pull-right" align="" id="imageeditor" style="display:none;">					  
-							  <div class="btn-group">										      
+							</div>
+							<div class="pull-right" align="" id="imageeditor" style="display:none;">
+							  <div class="btn-group">
 							      <button class="btn" id="bring-to-front" title="Bring to Front"><i class="icon-fast-backward rotate" style="height:19px;"></i></button>
-							      <button class="btn" id="send-to-back" title="Send to Back"><i class="icon-fast-forward rotate" style="height:19px;"></i></button>							      
+							      <button class="btn" id="send-to-back" title="Send to Back"><i class="icon-fast-forward rotate" style="height:19px;"></i></button>
 							      <button id="remove-selected" class="btn" title="Delete selected item"><i class="icon-trash" style="height:19px;"></i></button>
 							  </div>
-							</div>			  
-						</div>												
-					</div>					  		
-				<!--	EDITOR      -->	
-				<div style="background-color: #ffffff;position: relative; top:20px;height:560px;">				
+							</div>
+						</div>
+					</div>
+				<!--	EDITOR      -->
+				<div style="background-color: #ffffff;position: relative; top:20px;height:560px;">
 					<div id="phoneDiv" class="page" style="width: 282px; height: 590px; position: relative;left:25%; background-color: rgb(255, 255, 255);">
 						<img id="phone" src="img/phones/iphone5A.png"></img>
-						<div id="drawingArea" style="position: absolute;top:70px;left:30px;z-index: 10;width: 230px; height:450px;">					
+						<div id="drawingArea" style="position: absolute;top:70px;left:30px;z-index: 10;width: 230px; height:450px;">
 							<canvas id="tcanvas" width=230 height="450" class="hover" style="-webkit-user-select: none;"></canvas>
 						</div>
-					</div>		
-				</div>					
+					</div>
+				</div>
 				<!--	/EDITOR		-->
 		    </div>
-		
+
 		    <div class="span3">
 		      <div class="well">
 		      	<h3>Total Prices</h3>
@@ -228,32 +227,32 @@
 			      		<tr>
 			      			<td>Head Phone</td>
 			      			<td align="right">$4.99</td>
-			      		</tr>			      		
+			      		</tr>
 			      		<tr>
 			      			<td><strong>Total</strong></td>
 			      			<td align="right"><strong>$24.99</strong></td>
 			      		</tr>
-			      	</table>			
+			      	</table>
 			      </p>
 					<button type="button" class="btn btn-large btn-block btn-success" name="addToTheBag" id="addToTheBag">Add to bag <i class="icon-briefcase icon-white"></i></button>
-		      </div>		      		       		   
+		      </div>
 		    </div>
-		
+
 		  </div>
-		
+
 		</section>
     </div><!-- /container -->
-    
+
 <!-- Footer ================================================== -->
-      <footer class="footer">      
+      <footer class="footer">
       	<div class="container">
-	        <p class="pull-right"><a href="#">Back to top</a></p>	        
-	      </div>       
+	        <p class="pull-right"><a href="#">Back to top</a></p>
+	      </div>
     </footer>
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->    
-    <script src="js/bootstrap.min.js"></script>    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
 
   var _gaq = _gaq || [];

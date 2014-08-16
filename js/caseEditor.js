@@ -7,17 +7,17 @@ var line2;
 var line3;
 var line4;
  	$(document).ready(function() {
-		//setup front side canvas 
+		//setup front side canvas
  		canvas = new fabric.Canvas('tcanvas', {
 		  hoverCursor: 'pointer',
 		  selection: true,
 		  selectionBorderColor:'blue'
 		});
  		canvas.on({
-			 'object:moving': function(e) {		  	
+			 'object:moving': function(e) {
 			    e.target.opacity = 0.5;
 			  },
-			  'object:modified': function(e) {		  	
+			  'object:modified': function(e) {
 			    e.target.opacity = 1;
 			  },
 			 'object:selected':onObjectSelected,
@@ -44,16 +44,16 @@ var line4;
 		  };
 		})(canvas.findTarget);
 
- 		canvas.on('object:over', function(e) {		
+ 		canvas.on('object:over', function(e) {
 		  //e.target.setFill('red');
 		  //canvas.renderAll();
 		});
-		
- 		canvas.on('object:out', function(e) {		
+
+ 		canvas.on('object:out', function(e) {
 		  //e.target.setFill('green');
 		  //canvas.renderAll();
 		});
-		 		 	 
+
 		document.getElementById('add-text').onclick = function() {
 			var text = $("#text-string").val();
 		    var textSample = new fabric.Text(text, {
@@ -66,20 +66,20 @@ var line4;
 		      scaleY: 0.5,
 		      fontWeight: '',
 	  		  hasRotatingPoint:true
-		    });		    
-            canvas.add(textSample);	
-            canvas.item(canvas.item.length-1).hasRotatingPoint = true; 
+		    });
+            canvas.add(textSample);
+            canvas.item(canvas.item.length-1).hasRotatingPoint = true;
             $("#texteditor").css('display', 'block');
             $("#imageeditor").css('display', 'block');
 	  	};
-	  	$("#text-string").keyup(function(){	  		
+	  	$("#text-string").keyup(function(){
 	  		var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
 		    	  activeObject.text = this.value;
 		    	  canvas.renderAll();
 		      }
 	  	});
-	  	
+
 	  	$("#phoneTypes").change(function(e){
 	  		debugger;
 	  		if($(this).val() == "1"){
@@ -90,7 +90,7 @@ var line4;
 				line2 = new fabric.Line([224,0,225,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line3 = new fabric.Line([0,0,0,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line4 = new fabric.Line([0,450,225,449], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	  		}
+
 	  		else if ($(this).val() == "2"){
 	  			$("#phoneDiv").css('height','540');
 	  			$("#phone")[0].src = "img/phones/iPhone4A.png";
@@ -100,35 +100,35 @@ var line4;
 				line3 = new fabric.Line([0,20,0,420], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line4 = new fabric.Line([0,420,220,420], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	  		}
-	  		else if ($(this).val() == "3"){	  		
+	  		else if ($(this).val() == "3"){
 	  			$("#phoneDiv").css('height','535');
 	  			$("#phone")[0].src = "img/phones/GalaxyS3A.png";
-	  			//$("#borderMask")[0].src = "img/phones/GalaxyS3Mask.png";	
+	  			//$("#borderMask")[0].src = "img/phones/GalaxyS3Mask.png";
 	  			line1 = new fabric.Line([0,30,225,30], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line2 = new fabric.Line([224,30,225,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line3 = new fabric.Line([0,30,0,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 				line4 = new fabric.Line([0,400,225,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	  		}
 	  	});
-	  	
+
 	  	line1 = new fabric.Line([0,0,225,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 		line2 = new fabric.Line([224,0,225,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 		line3 = new fabric.Line([0,0,0,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 		line4 = new fabric.Line([0,450,225,449], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-		
+
 	  	$(".img-polaroid").click(function(e){
-	  		var el = e.target;	  		
+	  		var el = e.target;
 	  		var design = $(this).attr("src");
 	  		$('#phoneDiv').css({
 				'backgroundImage': 'url(' + design +')',
 				'backgroundRepeat': 'no-repeat',
 				'backgroundPosition': 'top center',
 				'background-size': '100% 100%'
-					
+
 			});
 		 //  document.getElementById("phoneDiv").style.backgroundImage="url("+ design +")";
-	  	});	  		  
-	  document.getElementById('remove-selected').onclick = function() {		  
+	  	});
+	  document.getElementById('remove-selected').onclick = function() {
 		    var activeObject = canvas.getActiveObject(),
 		        activeGroup = canvas.getActiveGroup();
 		    if (activeObject) {
@@ -143,7 +143,7 @@ var line4;
 		      });
 		    }
 	  };
-	  document.getElementById('bring-to-front').onclick = function() {		  
+	  document.getElementById('bring-to-front').onclick = function() {
 		    var activeObject = canvas.getActiveObject(),
 		        activeGroup = canvas.getActiveGroup();
 		    if (activeObject) {
@@ -157,7 +157,7 @@ var line4;
 		      });
 		    }
 	  };
-	  document.getElementById('send-to-back').onclick = function() {		  
+	  document.getElementById('send-to-back').onclick = function() {
 		    var activeObject = canvas.getActiveObject(),
 		        activeGroup = canvas.getActiveGroup();
 		    if (activeObject) {
@@ -170,63 +170,63 @@ var line4;
 		        object.sendToBack();
 		      });
 		    }
-	  };		  
-	  $("#text-bold").click(function() {		  
+	  };
+	  $("#text-bold").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
-		    activeObject.fontWeight = (activeObject.fontWeight == 'bold' ? '' : 'bold');		    
+		    activeObject.fontWeight = (activeObject.fontWeight == 'bold' ? '' : 'bold');
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-italic").click(function() {		 
+	  $("#text-italic").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
-			  activeObject.fontStyle = (activeObject.fontStyle == 'italic' ? '' : 'italic');		    
+			  activeObject.fontStyle = (activeObject.fontStyle == 'italic' ? '' : 'italic');
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-strike").click(function() {		  
+	  $("#text-strike").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
 			  activeObject.textDecoration = (activeObject.textDecoration == 'line-through' ? '' : 'line-through');
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-underline").click(function() {		  
+	  $("#text-underline").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
 			  activeObject.textDecoration = (activeObject.textDecoration == 'underline' ? '' : 'underline');
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-left").click(function() {		  
+	  $("#text-left").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
 			  activeObject.textAlign = 'left';
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-center").click(function() {		  
+	  $("#text-center").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
-			  activeObject.textAlign = 'center';		    
+			  activeObject.textAlign = 'center';
 		    canvas.renderAll();
 		  }
 		});
-	  $("#text-right").click(function() {		  
+	  $("#text-right").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
-			  activeObject.textAlign = 'right';		    
+			  activeObject.textAlign = 'right';
 		    canvas.renderAll();
 		  }
-		});	  
+		});
 	  $("#font-family").change(function() {
 	      var activeObject = canvas.getActiveObject();
 	      if (activeObject && activeObject.type === 'text') {
 	        activeObject.fontFamily = this.value;
 	        canvas.renderAll();
 	      }
-	    });	  
+	    });
 		$('#text-bgcolor').miniColors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
@@ -241,7 +241,7 @@ var line4;
 			close: function(hex, rgb) {
 				//
 			}
-		});		
+		});
 		$('#text-fontcolor').miniColors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
@@ -257,7 +257,7 @@ var line4;
 				//
 			}
 		});
-		
+
 		$('#text-strokecolor').miniColors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
@@ -273,17 +273,17 @@ var line4;
 				//
 			}
 		});
-	
+
 		//canvas.add(new fabric.fabric.Object({hasBorders:true,hasControls:false,hasRotatingPoint:false,selectable:false,type:'rect'}));
 	   $("#drawingArea").hover(
-	        function() { 	        	
+	        function() {
 	        	 canvas.add(line1);
 		         canvas.add(line2);
 		         canvas.add(line3);
-		         canvas.add(line4); 
+		         canvas.add(line4);
 		         canvas.renderAll();
 	        },
-	        function() {	        	
+	        function() {
 	        	 canvas.remove(line1);
 		         canvas.remove(line2);
 		         canvas.remove(line3);
@@ -291,36 +291,36 @@ var line4;
 		         canvas.renderAll();
 	        }
 	    );
-	   
+
 	   $('.color-preview').click(function(){
 		   var color = $(this).css("background-color");
-		   document.getElementById("phoneDiv").style.backgroundColor = color;		   
+		   document.getElementById("phoneDiv").style.backgroundColor = color;
 	   });
-	   	   	   
-	   $(".clearfix button,a").tooltip();	  
+
+	   $(".clearfix button,a").tooltip();
 	 });//doc ready
-	 
-	 
+
+
 	 function getRandomNum(min, max) {
 	    return Math.random() * (max - min) + min;
 	 }
-	 
-	 function onObjectSelected(e) {	 
+
+	 function onObjectSelected(e) {
 	    var selectedObject = e.target;
 	    $("#text-string").val("");
 	    selectedObject.hasRotatingPoint = true
 	    if (selectedObject && selectedObject.type === 'text') {
-	    	//display text editor	    	
+	    	//display text editor
 	    	$("#texteditor").css('display', 'block');
-	    	$("#text-string").val(selectedObject.getText());	    	
+	    	$("#text-string").val(selectedObject.getText());
 	    	$('#text-fontcolor').miniColors('value',selectedObject.fill);
-	    	$('#text-strokecolor').miniColors('value',selectedObject.strokeStyle);	 
+	    	$('#text-strokecolor').miniColors('value',selectedObject.strokeStyle);
 	    	$("#imageeditor").css('display', 'block');
 	    }
 	    else if (selectedObject && selectedObject.type === 'image'){
 	    	//display image editor
-	    	$("#texteditor").css('display', 'none');	
-	    	$("#imageeditor").css('display', 'block');	    	
+	    	$("#texteditor").css('display', 'none');
+	    	$("#imageeditor").css('display', 'block');
 	    }
 	  }
 	 function onSelectedCleared(e){
@@ -337,8 +337,8 @@ var line4;
 	  }
 	 function removeWhite(){
 		  var activeObject = canvas.getActiveObject();
-		  if (activeObject && activeObject.type === 'image') {	    	  
+		  if (activeObject && activeObject.type === 'image') {
 			  activeObject.filters[2] =  new fabric.Image.filters.RemoveWhite({hreshold: 100, distance: 10});//0-255, 0-255
 			  activeObject.applyFilters(canvas.renderAll.bind(canvas));
-		  }	        
+		  }
 	 }
