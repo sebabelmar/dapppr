@@ -26,8 +26,8 @@ exports.postUserName = function (req, res) {
         var dribbbleUserShots = dribbbleUserResponse.shots;
         var artistProducts = [];
 
-            var artist = new Artist();
-            artist.set('name', dribbbleUserShots[0].player.name);
+        var artist = new Artist();
+        artist.set('name', dribbbleUserShots[0].player.name);
 
         var PNGREGEX = /\.(png)\b/;
 
@@ -45,9 +45,14 @@ exports.postUserName = function (req, res) {
                 product.set('height', '');
                 product.set('width', '');
                 product.set('price', '');
-                product.save();
-                artistProducts.push(product);
+                product.set('artistName', artist.name);
+                product.set('artistId', artist.id);
 
+                var pushProduct = function(product) {
+                    artistProducts.push(product);
+                };
+
+                product.save().then(pushProduct);
             }
 
         }
@@ -74,47 +79,39 @@ exports.postUserName = function (req, res) {
 
 exports.showUserProductsPage = function (req, res) {
 
-    var artistID = req.params.userId;
-    var query = new Parse.Query(Artist);
-    query.include('products');
-    query.get(artistID, {
-        success: function(artist){
-            console.log("THIS IS ARTIST " +artist._serverData);
-            console.log("THIS IS PRODUCTS " +products);
-            // var products = artist.get('products');
+    var queue = require('queue-async');
 
-            var productURLS = [];
-            var products = artist._hashedJSON.products;
-
-            console.log(products.length);
-
-            for (var i = 0; i < products.length; i++) {
-                var productArtURL = products[i].artworkUrl;
-                // productURLS.push(productArtURL);
-                // console.log(productArtURL);
+    var getArtistData = function(artCallback) {
+        var artistQuery = new Parse.Query(Artist);
+        artistQuery.equalTo("artistID", req.params.userId);
+        artistQuery.find({
+            success: function(artistResults) {
+                artCallback(null, artistResults);
+                
             }
+        });
+    };
 
-            console.log("the products are " +products);
-            for (var product in products) {
-                var artworkURL = product.artworkUrl;
-                console.log(artworkURL);
-                productURLS.push(artworkURL);
-            }
+    var getProductData = function(productCallback) {
+        var productsQuery = new Parse.Query(Product);
+    };
 
-            console.log("the product urls are " +productURLS);
-
-
-            res.render('myproducts', {
-                user: artist._serverData,
-                products: productURLS
-
+    queue()
+        .defer(getArtistData)
+        .defer(getProductData)
+        .await(function(err, artBody, productBody) {
+            var addRelation = artistResults.relation('artworks').query();
+            addRelation.find({
+                success: function(productResults) {
+                    productCallback(null, productResults);
+                } 
             });
-
-
-        }
-    });
-
-
+            res.header('content-type', 'text/html');
+            res.render('myproducts', {
+                user: artBody,
+                products: productBody
+            });
+        });
 
 };
 
