@@ -15,6 +15,7 @@ var express                 = require('express'),
 
 Parse = require('parse').Parse;
 Artist = Parse.Object.extend('Artist');
+Product = Parse.Object.extend('Product');
  
 Parse.initialize("1m5YuobBTxJaGyIS5TfdJPY0hWsNiRYKxR9x6XFy", "7qklAQq7GXWNspOc4ZSaS6a1ZPNMSF8CEijqgQL2");
  
@@ -37,7 +38,7 @@ server.listen(3000);
 app.get('/', routes.signUpPage);
 app.post('/', routes.postUserName);
 app.get('/:userId', routes.showUserProductsPage);
-app.get('/:userId/:artworkId', routes.editProduct);
+app.get('/:userId/:productId', routes.editProduct);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');

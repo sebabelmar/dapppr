@@ -24,7 +24,10 @@ exports.postUserName = function (req, res) {
 
         var dribbbleUserResponse = JSON.parse(body);
         var dribbbleUserShots = dribbbleUserResponse.shots;
-        var usersArtWorkURLs = [];
+        var artistProducts = [];
+
+        var artist = new Artist();
+        artist.set('name', dribbbleUserShots[0].player.name);
 
         var PNGREGEX = /\.(png)\b/;
 
@@ -34,25 +37,26 @@ exports.postUserName = function (req, res) {
 
             if (PNGREGEX.exec(currentImageUrl)) {
 
-                var shotObject = {
-                    imageName: dribbbleUserShots[i].title,
-                    image_url: dribbbleUserShots[i].image_url,
-                    likes: dribbbleUserShots[i].likes_count
-                };
+                var product = new Product();
+                product.set('originalArtwork', dribbbleUserShots[i].title);
+                product.set('artworkUrl', dribbbleUserShots[i].image_url);
+                product.set('likesCount', dribbbleUserShots[i].likes_count);
+                product.set('shirtColor', '');
+                product.set('height', '');
+                product.set('width', '');
+                product.set('price', '');
+                product.set('artistOfProduct', artist);
+                product.save();
+                artistProducts.push(product);
 
-                usersArtWorkURLs.push(shotObject);
             }
 
         }
 
-            var artist = new Artist();
-
-            artist.set('name', dribbbleUserShots[0].player.name);
             artist.set('userFollowers', dribbbleUserShots[0].player.followers_count);
             artist.set('userLikes', dribbbleUserShots[0].player.likes_received_count);
             artist.set('userPortfolioURL', dribbbleUserShots[0].player.url);
             artist.set('avatar_url', dribbbleUserShots[0].player.avatar_url);
-            artist.set('userArtWork', usersArtWorkURLs);
             artist.set('artistID', artist.id);
             artist.save(null, {
                 success: function(artist) {
