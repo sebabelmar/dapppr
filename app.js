@@ -42,6 +42,40 @@ app.get('/checkout', function(req, res){
     var numberOfOrder= req.query;
     res.render('checkout');
     console.log('the number to print is');
+
+
+    var quoteQuery = new Parse.Query(Parse.User);
+
+    var order = {
+      orderToken: "DYNAMIC_TOKEN",
+      shipingAddress: {
+        name: "Seba",
+        company: "Seba",
+        address1: "3145 Octavia ST",
+        address2: "Apt 1",
+        city: "San Francisco",
+        state: "CA",
+        zip: "94123",
+        country: "US"
+        }
+    };
+
+
+    postOrder = function(order){
+      request.post('https://api.scalablepress.com/v2/order', {
+        'auth': {
+          'user': '',
+          'pass': '2e93f7ea8b4dcd09a0e72df2a7ec0d70'
+        },
+        json: true,
+        body: order
+      }, function (err, res, body) {
+        console.log(res.statusCode, body);
+      });
+    };
+    postOrder();
+
+
 });
 app.get('/thanks', function(req, res){
     res.render('thanks');
