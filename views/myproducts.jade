@@ -31,7 +31,7 @@ block content
       div.grid
         for png, index in user.userArtWork
           div(class='col-'+index)
-            div.item-container
+            div(class= 'item-container' id='#{index}')
               div.size-container(user-select='none') #{user.userArtWork.imageName} small
               div.size-container.medium(user-select='none') medium
               div.size-container.large(user-select='none') large
