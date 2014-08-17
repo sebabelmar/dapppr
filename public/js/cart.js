@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-$('.size-container').on('click', function() {
+$('.item-container').on('click', function() {
 
   if ($(this).html() === "ADDED"){
     if($(this).hasClass('medium')){
@@ -27,9 +27,6 @@ $('.settings-icon').on('click', function() {
 
 
 
-
-
-
 // $('.shirt-items').on('hover', function(){
 //   $(this).css('opacity', '0.7');
 // });
@@ -39,9 +36,6 @@ $('.settings-icon').on('click', function() {
 //   $('this .shirt-items').css('opacity', '1');
 //   $(this).css('opacity', '1');
 // });
-
-
-
 
 
 

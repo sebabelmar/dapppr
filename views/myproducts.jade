@@ -29,7 +29,7 @@ block content
     section.products
 
       div.grid
-        for png in user.userArtWork
+        for png, index in user.userArtWork
           div(class='col-'+index)
             div.item-container
               div.size-container(user-select='none') #{user.userArtWork.imageName} small
