@@ -130,3 +130,102 @@ exports.editProduct = function (req, res) {
     });
 
 };
+
+
+exports.checkout = function (req, res) {
+
+    res.render('checkout');
+
+    var shirtColor;
+    var shirtSize;
+    var shirtArtwork;
+    var address;
+
+    var designObject  = {
+      "name": "Seba",
+      "type": "dtg",
+      "sides": {
+        "front": 1,
+        "back": -1,
+        "right": -1,
+        "left": -1
+      },
+      "artwork": "sebabelmar.com",
+      "proof": "sebabelmar.com",
+      "color": [
+        "white"
+      ],
+      "dimensions": {
+        "width": 5,
+        "height": 7
+      }
+    };
+
+    var quote_object  = {
+      "type": "dtg",
+      "designId": designObject,
+      "sides": {
+        "front": 1,
+        "back": -1,
+        "right": -1,
+        "left": -1
+      },
+      "product": {
+        "id": "anvil-100-cotton-t-shirt",
+        "color": "",
+        "size": "",
+        "quantity": 1
+      },
+      "address": {
+        "name": "john smith",
+        "company": "google",
+        "address1": "1600 penn ave",
+        "address2": "oval office",
+        "city": "paris",
+        "state": "kentucky",
+        "zip": "zimbabwe",
+        "country": "china"
+        }
+    };
+
+
+    var sendDesignToShirtsAPI = function() {
+
+        var designObject  = {
+          "name": "Seba",
+          "type": "dtg",
+          "sides": {
+            "front": 1,
+            "back": -1,
+            "right": -1,
+            "left": -1
+          },
+          "artwork": "sebabelmar.com",
+          "proof": "sebabelmar.com",
+          "color": [
+            "white"
+          ],
+          "dimensions": {
+            "width": 5,
+            "height": 7
+          }
+        };
+
+
+        request({
+            url: 'https://api.scalablepress.com/v2/order',
+            'method': 'POST',
+            'body': designObject
+            },function(error,response,body){
+                res.redirect('/thanks');
+        });
+
+    };
+
+
+
+
+
+};
+
+

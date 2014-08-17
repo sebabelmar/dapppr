@@ -7,10 +7,11 @@ var express                 = require('express'),
     db                      = require('./lib/db'),
     config                  = require('config'),
     utils                   = require('./lib/utils'),
-    request                 = require('request'),
     fs                      = require('fs'),
     util                    = require('util'),
     mime                    = require('mime');
+
+    request                 = require('request');
 
 
 Parse = require('parse').Parse;
@@ -35,10 +36,17 @@ app.use(bodyParser.json());
 app.set('port', 3000);
 server.listen(3000);
 
+app.get('/checkout', routes.checkout);
+app.get('/thanks', function(req, res){
+    res.render('thanks');
+});
+
 app.get('/', routes.signUpPage);
 app.post('/', routes.postUserName);
 app.get('/:userId', routes.showUserProductsPage);
 app.get('/:userId/:productId', routes.editProduct);
+
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
