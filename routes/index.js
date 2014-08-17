@@ -45,7 +45,6 @@ exports.postUserName = function (req, res) {
                 product.set('height', '');
                 product.set('width', '');
                 product.set('price', '');
-                product.set('artistOfProduct', artist);
                 product.save();
                 artistProducts.push(product);
 
@@ -78,36 +77,44 @@ exports.showUserProductsPage = function (req, res) {
     var artistID = req.params.userId;
     var query = new Parse.Query(Artist);
     query.include('products');
-    var query2 = new Parse.Query(Product);
+    query.get(artistID, {
+        success: function(artist){
+            console.log("THIS IS ARTIST " +artist._serverData);
+            console.log("THIS IS PRODUCTS " +products);
+            // var products = artist.get('products');
 
-    var getArtistData = function(cb) {
-        query.get(artistID, {
-            success: function(artist){
-                console.log(artist);
-                cb(null, artist);
+            var productURLS = [];
+            var products = artist._hashedJSON.products;
+
+            console.log(products.length);
+
+            for (var i = 0; i < products.length; i++) {
+                var productArtURL = products[i].artworkUrl;
+                // productURLS.push(productArtURL);
+                // console.log(productArtURL);
             }
-        });
-    };
 
-    var getProductData = function(cb2) {
-        query2.equalTo('artistOfProduct', artistID);
-        query.find({
-            success: function(results) {
-                cb(null, results);
+            console.log("the products are " +products);
+            for (var product in products) {
+                var artworkURL = product.artworkUrl;
+                console.log(artworkURL);
+                productURLS.push(artworkURL);
             }
-        });
 
-    };
+            console.log("the product urls are " +productURLS);
 
-    queue()
-        .defer(getArtistData)
-        .defer(getProductData)
-        .await(function(err, user, products) {
+
             res.render('myproducts', {
                 user: artist._serverData,
-                products: products
+                products: productURLS
+
             });
-        });
+
+
+        }
+    });
+
+
 
 };
 
