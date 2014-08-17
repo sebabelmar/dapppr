@@ -23,10 +23,10 @@ block content
     section.products 
 
       div.grid
-        for png in user.artistProducts
+        for product in products
           div(class='col-'+index)
             div.item-container
-              img.prod_img.profile_center(src='#{png.image_url}')
+              img.prod_img.profile_center(src='#{product.artworkUrl}')
 
   section.footer
     div.wrap-big

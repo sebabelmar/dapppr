@@ -1,4 +1,4 @@
-var dribbbleAPI = require('../apiRequests/dribbbleService');
+queue = require('queue-async');
 
 exports.signUpPage = function (req, res) {
 
@@ -26,8 +26,8 @@ exports.postUserName = function (req, res) {
         var dribbbleUserShots = dribbbleUserResponse.shots;
         var artistProducts = [];
 
-        var artist = new Artist();
-        artist.set('name', dribbbleUserShots[0].player.name);
+            var artist = new Artist();
+            artist.set('name', dribbbleUserShots[0].player.name);
 
         var PNGREGEX = /\.(png)\b/;
 
@@ -58,6 +58,7 @@ exports.postUserName = function (req, res) {
             artist.set('userPortfolioURL', dribbbleUserShots[0].player.url);
             artist.set('avatar_url', dribbbleUserShots[0].player.avatar_url);
             artist.set('artistID', artist.id);
+            artist.set('products', artistProducts);
             artist.save(null, {
                 success: function(artist) {
                     var artistID = artist.id;
@@ -74,20 +75,39 @@ exports.postUserName = function (req, res) {
 
 exports.showUserProductsPage = function (req, res) {
 
-    // console.log(req.params);
     var artistID = req.params.userId;
-
     var query = new Parse.Query(Artist);
-    query.get(artistID, {
-        success: function(artist){
-            console.log(artist);
+    query.include('products');
+    var query2 = new Parse.Query(Product);
 
+    var getArtistData = function(cb) {
+        query.get(artistID, {
+            success: function(artist){
+                console.log(artist);
+                cb(null, artist);
+            }
+        });
+    };
+
+    var getProductData = function(cb2) {
+        query2.equalTo('artistOfProduct', artistID);
+        query.find({
+            success: function(results) {
+                cb(null, results);
+            }
+        });
+
+    };
+
+    queue()
+        .defer(getArtistData)
+        .defer(getProductData)
+        .await(function(err, user, products) {
             res.render('myproducts', {
-                user: artist._serverData
+                user: artist._serverData,
+                products: products
             });
-
-        }
-    });
+        });
 
 };
 
