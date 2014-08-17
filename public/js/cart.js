@@ -14,11 +14,9 @@ $('.item-container').on('click', function() {
   } else {
     $(this).html('ADDED');
   }
-  document.location.href = '../checkout';
+
   var myClass = $(this).attr('id');
-  alert(myClass);
-
-
+  document.location.href = "../checkout?"+myClass;
 
 });
 

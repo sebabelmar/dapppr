@@ -39,7 +39,9 @@ app.set('port', 3000);
 server.listen(3000);
 
 app.get('/checkout', function(req, res){
+    var numberOfOrder= req.query;
     res.render('checkout');
+    console.log('the number to print is');
 });
 app.get('/thanks', function(req, res){
     res.render('thanks');
